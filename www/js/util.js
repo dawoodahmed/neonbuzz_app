@@ -3068,6 +3068,46 @@ function load_notification_count() {
     
 }
 
+function onDeviceReady() {
+    document.addEventListener("backbutton", function(e) {
+        e.preventDefault();
+        var page = myApp.getCurrentView().activePage;
+        myApp.hideIndicator();
+        image_from_device = '';
+        if (page.name == "buzzs" || page.name == "index") {
+            console.log('buzzs');
+            myApp.confirm('would you like to exit app.', function() {
+                navigator.app.clearHistory();
+                gaPlugin.exit(nativePluginResultHandler, nativePluginErrorHandler);
+                navigator.app.exitApp();
+            });
+        } else if(page.name == "offers" || page.name == "index") {
+            console.log('offers');
+            myApp.confirm('would you like to exit app.', function() {
+                navigator.app.clearHistory();
+                gaPlugin.exit(nativePluginResultHandler, nativePluginErrorHandler);
+                navigator.app.exitApp();
+            });
+        }
+        else {
+            console.log('else');
+            mainView.router.back({});
+            // navigator.app.backHistory();
+        }
+    }, false);
 
+    gaPlugin = window.plugins.gaPlugin;
+    gaPlugin.init(nativePluginResultHandler, nativePluginErrorHandler, "UA-78959047-1", 10);
+}
+
+function nativePluginResultHandler(result) {
+    console.log('GA result: '+result);
+    // alert('GA result: '+result);
+}
+
+function nativePluginErrorHandler(error) {
+    console.log('GA error: '+error);
+    // alert('GA error: '+error);
+}
 
 
