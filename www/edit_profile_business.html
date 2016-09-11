@@ -1,0 +1,141 @@
+<div data-page="edit_profile_business" class="page">
+  
+  <div class="navbar header">
+    <div class="navbar-inner">
+    <div class="left"><a href="#" class="back link icon-only"><i class="material-icons" style="color:#000;">arrow_back</i></a></div>
+      <div class="center title">Edit Profile</div>
+    <img src="img/header-right.png" class="right" alt="" />
+      <!-- <div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div> -->
+    </div>
+  </div>
+
+  <div class="page-content">
+    <form>
+      <div class="list-block inputs-list">
+        <ul>
+          <li class="item-content">
+            <div class="item-inner">
+              <div class="item-title label">Name</div>
+              <div class="item-input">
+                <input id="edit_profile_business-name" type="text" placeholder="Your Name"/>
+              </div>
+            </div>
+          </li>
+          <li class="item-content">
+            <div class="item-inner">
+              <div class="item-title label">Business Name</div>
+              <div class="item-input">
+                <input id="edit_profile_business-buissness" type="text" placeholder="Your Business Name"/>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="#" class="item-link smart-select" data-searchbar="true" data-searchbar-placeholder="Search categories">
+              <!-- "multiple" attribute for multiple select-->
+              <select name="car" multiple id="edit_profile_business-category">
+              </select>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title">Category</div>
+                  <!-- Selected value, not required -->
+                  <div class="item-after"></div>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li class="item-content">
+            <div class="item-inner">
+              <div class="item-title label">Email ID</div>
+              <div class="item-input">
+                <input id="edit_profile_business-email" type="email" placeholder="Your Email ID"/>
+              </div>
+            </div>
+          </li>
+          <li class="item-content">
+            <div class="item-inner">
+              <div class="item-title label">Phone number</div>
+              <div class="item-input">
+                <input id="edit_profile_business-phone" type="tel" maxlength="10" class="not-empty-state" placeholder="Your Phone number"/>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="#" class="item-link smart-select" data-searchbar="true" data-searchbar-placeholder="Search cities" data-back-on-select="true">
+                <select name="cities" id="edit_profile_business-city_select">
+                </select>
+
+                <div class="item-content">
+                    <div class="item-inner">
+                      <!-- Select label -->
+                      <div class="item-title">City</div>
+                      <!-- Selected value, not required -->
+                      <div class="item-after"></div>
+                    </div>
+                </div>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="item-link smart-select" data-searchbar="true" data-searchbar-placeholder="Search location" data-back-on-select="true">
+                <select name="locations" id="edit_profile_business-location_select">
+                </select>
+
+                <div class="item-content">
+                    <div class="item-inner">
+                      <!-- Select label -->
+                      <div class="item-title">Location</div>
+                      <!-- Selected value, not required -->
+                      <div class="item-after"></div>
+                    </div>
+                </div>
+            </a>
+          </li>
+          <li class="item-content">
+              <!-- <div class="item-title">Gender</div> -->
+              <div class="content-block-title">Gender</div>
+          </li>
+          <li>
+              <label class="label-radio item-content">
+                <!-- Checked by default -->
+                <input type="radio" name="edit_profile_business-gender" value="male" class="business_register-gender">
+                <div class="item-media">
+                  <i class="icon icon-form-radio"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">Male</div>
+                </div>
+              </label>
+          </li>
+          <!-- Another radio input -->
+          <li>
+            <label class="label-radio item-content">
+              <input type="radio" name="edit_profile_business-gender" value="female" class="business_register-gender">
+              <div class="item-media">
+                <i class="icon icon-form-radio"></i>
+              </div>
+              <div class="item-inner">
+                <div class="item-title">Female</div>
+              </div>
+            </label>
+          </li>
+          <li class="item-content">
+            <div class="item-inner">
+              <div class="item-title">Profile pic</div>
+              <div class="item-input">
+                  <a href="#" id="edit_profile_business-profile_btn" onclick="open_dialog_for_image()" class="floating-button black_clr btn-center">
+                    <i class="material-icons">add_a_photo</i>
+                  </a>
+              </div>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="content-block submit-btn">
+        <a href="#" class="button button-big" onclick="edit_profile_business()">Update Profile</a>
+      </div>
+
+    </form>
+  </div>
+</div>
+

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="theme-color" content="#2196f3">
+    <title>NeonBuzz</title>
+    <link rel="stylesheet" href="./css/framework7.material.min.css">
+    <link rel="stylesheet" href="./css/framework7.material.colors.min.css">
+    <link rel="stylesheet" href="./css/materialize-tags.css">
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,500,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./css/kitchen-sink.css">
+    <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="./css/cs-select.css">
+    <link rel="stylesheet" href="./css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="./css/material-icons.css">
+    <link rel="icon" href="img/icon.png">
+</head>
+
+<body>
+    <div class="panel-overlay"></div>
+    <div class="panel men_u panel-left panel-reveal">
+        <center><img src="img/neon.png" class="menu_logo" alt="" /></center>
+        <div class="content-block menu_sub">
+            <!-- <p>Left Panel content here</p> -->
+            <!-- Click on link with "close-panel" class will close panel -->
+            <p><a href="notifications.html" class="close-panel menu_a">Notifications <span class="chat_span" id="notification_count"></span></a></p>
+            <p><a href="search.html" class="close-panel menu_a">Search</a></p>
+            <p><a href="buzzs.html" class="close-panel menu_a">buzzs</a></p>
+            <p><a href="offers.html" class="close-panel menu_a">offers</a></p>
+            <p id="buzzCreate"><a href="create_buzz.html" class="close-panel menu_a">Create Buzz</a></p>
+            <p id="offerCreate"><a href="create_offer.html" class="close-panel menu_a">Create Offer</a></p>
+            <p><a onclick="goto_profile()" class="close-panel menu_a">Profile</a></p>
+            <p><a onclick="goto_edit_profile()" class="close-panel menu_a">Edit Profile</a></p>
+            <p id="chats"><a href="chats.html" class="close-panel menu_a">Chat <span class="chat_span" id="chat_count"></span></a></p>
+            <p><a href="#" onclick="logout()" class="close-panel menu_a">logout</a></p>
+        </div>
+    </div>
+    <div class="views">
+        <div class="view view-main">
+            <div class="pages navbar-fixed toolbar-fixed">
+                <div data-page="index" class="page">
+                    <div class="page-content landing_bg">
+                        <div class="content-block">
+                            <center>
+                                <img src="img/neon.png" class="ne_on" alt="" style="margin-top:71px" />
+                                <br>
+                                <a href="#" id="login" class="button button-raised login-btn" style="display: none" onclick="login_page()">Login</a>
+                                <br>
+                                <a href="#" id="register" class="button button-raised register1-btn" style="display: none" onclick="register()">Register</a>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- filter tabbar -->
+    <div class="popup filter-popup" id="filter-popup">
+        <div class="navbar header">
+            <div class="navbar-inner">
+                <div class="left">
+                    <a href="#" class="close-popup" style="padding-top: 10px; padding-left: 10px;">
+                        <i class="material-icons" style="color:#000;">close</i>
+                    </a>
+                </div>
+                <div style="" class="center title1" id="single-header">Buzz Filter</div>
+                <div class="right" style="right: 47px;">
+                    <a href="#" class="" style="padding-top: 10px;"  onclick="clear_filter()">
+                           <i class="material-icons" style="color:#000;">clear_all</i>
+                    </a>
+                </div>
+                <div class="right">
+                    <a href="#" class="" style="padding-top: 10px;"  onclick="load_buzzs_filter()">
+                            <i class="material-icons" style="color:#000;">done_all</i>
+                    </a>
+                </div>
+                <!-- <img src="img/header-right.png" class="right" alt="" /> -->
+                <!-- <div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div> -->
+            </div>
+        </div>
+        <div class="toolbar tabbar" style="background: black !important; bottom: initial !important;">
+            <div class="toolbar-inner">
+                <a href="#tags_tab" class="active tab-link">Tags</a>
+                <a href="#location_tab" class="tab-link">Locations</a>
+                <a href="#category_tab" class="tab-link">Category</a>
+                <span class="tab-link-highlight" style="width:33%; transform: translate3d(0%, 0px, 0px) ;background: #989090 !important; height: 5px !important;"></span>
+            </div>
+        </div>
+            
+        <div class="tabs" style="padding-top: 36px;">
+            <div id="tags_tab" class="tab active">
+              <div class="content-block" style="padding: 0 0;">
+                <div class="list-block" style="margin:0 0">
+                    <ul id="filtertags">
+                        <li>
+                            <label class="label-radio item-content">
+                                <input type="radio" name="tags" value="looking for something">
+                                <div class="item-media">
+                                    <i class="icon icon-form-radio"></i>
+                                </div>
+                                <div class="item-inner">
+                                    <div class="item-title">Looking for something</div>
+                                </div>
+                            </label>
+                        </li>
+                        
+                        <li>
+                            <label class="label-radio item-content">
+                                <input type="radio" name="tags" value="tell the world about it">
+                                <div class="item-media">
+                                    <i class="icon icon-form-radio"></i>
+                                </div>
+                                <div class="item-inner">
+                                    <div class="item-title">Tell the world about it</div>
+                                </div>
+                            </label>
+                        </li>
+                    </ul>
+                    <!-- <p class="buttons-row" style="bottom: 0;position: absolute;width: 100%;margin: 0 0;">
+                      <a href="#" class="button button-big button-fill color-gray" id="tags_buzz_filter" onclick="load_buzzs_filter()" style="background-color: #989090!important;">Apply Filter</a>
+                    </p> -->
+                </div>
+              </div>
+            </div>
+            <div id="location_tab" class="tab">
+                <div class="page-content">
+                    <div class="content-block" style="padding: 0 0;">
+                        <div class="list-block" style="margin:0 0">
+                            <ul id="filterLocation">  
+                            </ul>
+                            <!-- <p class="buttons-row" style="bottom: 0;width: 100%;position: fixed;margin: 0 0;">
+                                <a href="#" class="button button-big button-fill color-gray" id="loaction_buzz_filter">Apply Filter</a>
+                            </p> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div id="category_tab" class="tab">
+                <div class="page-content">
+                    <div class="content-block" style="padding: 0 0;">
+                        <div class="list-block" style="margin:0 0">
+                            <ul id="filtercategory">  
+                            </ul>
+                            <!-- <p class="buttons-row" style="bottom: 0;width: 100%;position: fixed;margin: 0 0;">
+                                <a href="#" class="button button-big button-fill color-gray" id="loaction_buzz_filter">Apply Filter</a>
+                            </p> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="popup filter-popup-offer" id="filter-popup-offer">
+        <div class="navbar header">
+            <div class="navbar-inner">
+                <div class="left">
+                    <a href="#" class="close-popup" style="padding-top: 10px; padding-left: 10px;">
+                        <i class="material-icons" style="color:#000;">close</i>
+                    </a>
+                </div>
+                <div style="" class="center title1" id="single-header">Offer Filter</div>
+                <div class="right" style="right: 47px;">
+                    <a href="#" class="" style="padding-top: 10px;"  onclick="clear_filter_offer()">
+                           <i class="material-icons" style="color:#000;">clear_all</i>
+                    </a>
+                </div>
+                <div class="right">
+                    <a href="#" class="" style="padding-top: 10px;"  onclick="load_offer_filter()">
+                            <i class="material-icons" style="color:#000;">done_all</i>
+                    </a>
+                </div>
+                <!-- <img src="img/header-right.png" class="right" alt="" /> -->
+                <!-- <div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div> -->
+            </div>
+        </div>
+        <div class="toolbar tabbar" style="background: black !important; bottom: initial !important;">
+            <div class="toolbar-inner">
+                <a href="#tags_tab_offer" class="active tab-link">Tags</a>
+                <a href="#location_tab_offer" class="tab-link">Locations</a>
+                <a href="#category_tab_offer" class="tab-link">Category</a>
+                <span class="tab-link-highlight" style="width:33%; transform: translate3d(0%, 0px, 0px) ;background: #989090 !important; height: 5px !important;"></span>
+            </div>
+        </div>
+            
+        <div class="tabs" style="padding-top: 36px;">
+            <div id="tags_tab_offer" class="tab active">
+              <div class="content-block" style="padding: 0 0;">
+                <div class="list-block" style="margin:0 0">
+                    <ul id="filtertags">
+                        <li>
+                            <label class="label-radio item-content">
+                                <input type="radio" name="offer_tags" value="great value">
+                                <div class="item-media">
+                                    <i class="icon icon-form-radio"></i>
+                                </div>
+                                <div class="item-inner">
+                                    <div class="item-title">Great Value</div>
+                                </div>
+                            </label>
+                        </li>
+                        
+                        <li>
+                            <label class="label-radio item-content">
+                                <input type="radio" name="offer_tags" value="amazing stuff">
+                                <div class="item-media">
+                                    <i class="icon icon-form-radio"></i>
+                                </div>
+                                <div class="item-inner">
+                                    <div class="item-title">Amazing Stuff</div>
+                                </div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+              </div>
+            </div>
+            <div id="location_tab_offer" class="tab">
+                <div class="page-content">
+                    <div class="content-block" style="padding: 0 0;">
+                        <div class="list-block" style="margin:0 0">
+                            <ul id="offer_filterLocation">  
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div id="category_tab_offer" class="tab">
+                <div class="page-content">
+                    <div class="content-block" style="padding: 0 0;">
+                        <div class="list-block" style="margin:0 0">
+                            <ul id="offer_filtercategory">  
+                            </ul>
+                            <!-- <p class="buttons-row" style="bottom: 0;width: 100%;position: fixed;margin: 0 0;">
+                                <a href="#" class="button button-big button-fill color-gray" id="loaction_buzz_filter">Apply Filter</a>
+                            </p> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="./js/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="./js/framework7.min.js"></script>
+    <script type="text/javascript" src="./js/materialize-tags.js"></script>
+    <script type="text/javascript" src="./js/lockr.min.js"></script>
+    <script src="./js/openfb.js"></script>
+    <!-- high chart -->
+    <script src="./js/highcharts.js"></script>
+    <script src="./js/data.js"></script>
+    <script src="./js/drilldown.js"></script>
+    <!-- / high chart -->
+    <script type="text/javascript" src="./js/util.js"></script>
+    <script type="text/javascript" src="./js/my-app.js"></script>
+</body>
+</html>

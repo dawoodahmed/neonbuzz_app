@@ -1,0 +1,113 @@
+<div data-page="create_buzz" class="page">
+  
+	<div class="navbar header">
+        <div class="navbar-inner">
+            <div class="left"><a href="#" class="back link icon-only"><i class="material-icons" style="color:#000;">arrow_back</i></a></div>
+            <div style="font-size:0.8em !important; margin:0 16% !important;" class="center title1" id="single-header">Create Buzz</div>
+			<img src="img/header-right.png" class="right" alt="" />
+            <!-- <div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div> -->
+		</div>
+    </div>
+
+  <div style="background:#242424;" class="page-content pad_55">
+    <form>
+      <div class="list-block f_box inputs-list">
+        <ul>
+            <li class="item-content create_feed_pic" style="padding-bottom: 10px;padding-top: 10px;">
+                <div class="item-inner pad0">
+                    <!--<div class="item-title">Profile pic</div>-->
+                        <div class="item-input">
+                            <a href="#" id="create_feed-image_btn" onclick="open_dialog_for_image()" class="floating-button btn-center black_clr">
+                                <i class="material-icons">add_a_photo</i>
+                            </a>
+                        </div>
+                </div>
+            </li>
+             <!-- <li class="item-content">
+              <div class="item-inner">
+                
+                <div class="item-input1">
+                 <select name="tags" id="create_buzz_tag" class="item-title loc">
+                   <option value="select" disabled="">SELECT TAGS</option>
+                   <option value="looking for something">looking for something</option>
+                   <option value="tell the world about it">Tell the world about it</option>
+                 </select>
+                </div>
+              </div>
+            </li> -->
+             <li style="padding-bottom: 10px;padding-top: 10px;">
+              <a href="#" class="item-link smart-select" data-searchbar="true" data-searchbar-placeholder="Search locations" data-back-on-select="true">
+                <!-- "multiple" attribute for multiple select-->
+                <div class="item-input1">
+                  <select name="tag_buzz" id="create_buzz_tag">
+                    <option value="select">Select Tags</option>
+                    <option value="looking for something">Looking for something</option>
+                    <option value="tell the world about it">Tell the world about it</option>
+                  </select>
+                </div>
+                <div class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title loc">TAGS</div>
+                    <div class="item-after"></div>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+            <li class="item-content" style="padding-bottom: 10px;padding-top: 10px;">
+              <div class="item-inner">
+                <!--<div class="item-title label">Tags</div>-->
+                <div class="item-input1">
+                  <!-- <input id="create_feed-name" type="text" placeholder="Your Name"/> -->
+                  <input type="number" value="" class="white_border first_t" placeholder="Price" id="create_buzz-price" data-role="materialtags" />
+                </div>
+              </div>
+            </li>
+            <li style="padding-bottom: 10px;padding-top: 10px;">
+              <a href="#" class="item-link smart-select" data-searchbar="true" data-searchbar-placeholder="Search locations" data-back-on-select="true">
+                <!-- "multiple" attribute for multiple select-->
+                <select name="car" id="create_buzz-location">
+                </select>
+                <div class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title loc">Location</div>
+                    <!-- Selected value, not required -->
+                    <div class="item-after"></div>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li style="padding-bottom: 10px;padding-top: 10px;">
+              <a href="#" class="item-link smart-select" data-searchbar="true" data-searchbar-placeholder="Search categories">
+                <!-- "multiple" attribute for multiple select-->
+                <select name="car" multiple id="create_buzz-categories">
+                </select>
+                <div class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title loc">Category</div>
+                    <!-- Selected value, not required -->
+                    <div class="item-after"></div>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <!-- <li class="align-top">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">Description</div>
+                        <div class="item-input1">
+                            <textarea class="white_border first_t" placeholder="Enter Description" id="create_buzz-description"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </li> -->
+          
+        </ul>
+      </div>
+
+      <div class="content-block submit-btn">
+        <a href="#" class="button button-big offer_button" onclick="add_buzz()">Create Buzz</a>
+      </div>
+    </form>
+  </div>
+</div>
