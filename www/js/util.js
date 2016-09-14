@@ -3010,7 +3010,7 @@ function load_notification() {
                         '<a onclick="come_form_notification_image(\''+val.category+'\', '+val.creator_id+', \''+val.user_type+'\')" class="item-media notify_box"><img src="'+profile_image+'" width="44"></a>'+
                         '<div class="item-inner" onclick="come_form_notification(\''+val.category+'\', '+id+', \''+val.user_type+'\')">'+
                             '<div class="item-title-row">'+
-                                '<div <cla></cla>ss="item-title">'+val.name+'</div>'+
+                                '<div class="item-title">'+val.name+'</div>'+
                             '</div>'+
                             '<div class="item-subtitle notify_sub">'+val.text+'</div>'+
                         '</div>'+
