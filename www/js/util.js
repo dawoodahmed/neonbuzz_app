@@ -437,9 +437,12 @@ function register_shopper() {
     var confirm_password = $('#shopper_register-confirm_password').val().trim();
     var city_id = $('#shopper_register-city_select').val();
     var location_id = $('#shopper_register-location_select').val();
-    var gender = $('input[name=shopper_register-gender]:checked').val();
-    var dob = $('#shopper_register-dob').val().trim();
-    var profile_image = image_from_device.trim();
+    // var gender = $('input[name=shopper_register-gender]:checked').val();
+    // var dob = $('#shopper_register-dob').val().trim();
+    var gender = '';
+    var dob = '';
+    // var profile_image = image_from_device.trim();
+    var profile_image = 'default_image.png';
     var phone = $('#shopper_register-phone').val().trim();
 
     if (name == '') {
@@ -486,11 +489,11 @@ function register_shopper() {
     //     myApp.alert('Please enter date of birth.');
     //     return false;
     // }
-    if (profile_image == '') {
-        profile_image = 'default_image.png';
-        // myApp.alert('Please upload profile image.');
-        // return false;
-    }
+    // if (profile_image == '') {
+    //     profile_image = 'default_image.png';
+    //     // myApp.alert('Please upload profile image.');
+    //     // return false;
+    // }
 
     myApp.showIndicator();
     $.ajax({
@@ -601,18 +604,19 @@ function login_via_fb(data) {
     .done(function(res) {
         console.log("success: " + j2s(res));
         myApp.hideIndicator();
+         $("#buzzCreate").hide();
         if (res.response_text == 'success') {
             myApp.alert(j2s(res.response_msg));
             Lockr.set('token', res.user_id);
             token = res.user_id;
             user_data = res.users_data;
 
-            if (!notification_interval) {
-                load_notification_count();
-                notification_interval = setInterval(function() {
-                    load_notification_count();
-                }, 5000);
-            }
+            // if (!notification_interval) {
+            //     load_notification_count();
+            //     notification_interval = setInterval(function() {
+            //         load_notification_count();
+            //     }, 5000);
+            // }
 
             mainView.router.load({
                 url: 'buzzs.html',
@@ -626,8 +630,16 @@ function login_via_fb(data) {
             Lockr.set('token', res.user_id);
             token = res.user_id;
             user_data = res.users_data;
+
+            // if (!notification_interval) {
+            //     load_notification_count();
+            //     notification_interval = setInterval(function() {
+            //         load_notification_count();
+            //     }, 5000);
+            // }
+            
             mainView.router.load({
-                url: 'login.html',
+                url: 'buzzs.html',
                 ignoreCache: false,
                 query: {
                     register: true
@@ -908,8 +920,15 @@ function load_buzzs() {
                             share_link +
                             // '<a href="javascript:void(0);" class="add_clk"><i class="material-icons white_heart">add_circle</i></a>'+
                             // remove_link +
-                            like_link +
-                            '<a href="javascript:void(0);" class="chat_lnk" onClick="goto_single_chat('+val.user_id+')"><i class="material-icons chat" style="font-size:28px !important;color:white;">chat</i></a>'+
+                            like_link ;
+                            if (parseInt(val.user_id) == parseInt(token)) {
+                                html +=
+                                '<i class="material-icons chat" style="font-size:28px !important;color:white;">chat</i></a>';
+                            } else {
+                                html +=
+                                 '<a href="javascript:void(0);" class="chat_lnk" onClick="goto_single_chat('+val.user_id+')"><i class="material-icons chat" style="font-size:28px !important;color:white;">chat</i></a>';
+                            }
+                        html +=
                         '</div>' +
                     '</div>';
             });
@@ -2991,7 +3010,7 @@ function load_notification() {
                         '<a onclick="come_form_notification_image(\''+val.category+'\', '+val.creator_id+', \''+val.user_type+'\')" class="item-media notify_box"><img src="'+profile_image+'" width="44"></a>'+
                         '<div class="item-inner" onclick="come_form_notification(\''+val.category+'\', '+id+', \''+val.user_type+'\')">'+
                             '<div class="item-title-row">'+
-                                '<div class="item-title">'+val.name+'</div>'+
+                                '<div <cla></cla>ss="item-title">'+val.name+'</div>'+
                             '</div>'+
                             '<div class="item-subtitle notify_sub">'+val.text+'</div>'+
                         '</div>'+
@@ -3068,21 +3087,16 @@ function load_notification_count() {
     
 }
 
+document.addEventListener("deviceready", onDeviceReady, false);
+
 function onDeviceReady() {
     document.addEventListener("backbutton", function(e) {
         e.preventDefault();
         var page = myApp.getCurrentView().activePage;
         myApp.hideIndicator();
         image_from_device = '';
-        if (page.name == "buzzs" || page.name == "index") {
+        if (page.name == "buzzs" || page.name == "index" || page.name == "offers" ) {
             console.log('buzzs');
-            myApp.confirm('would you like to exit app.', function() {
-                navigator.app.clearHistory();
-                gaPlugin.exit(nativePluginResultHandler, nativePluginErrorHandler);
-                navigator.app.exitApp();
-            });
-        } else if(page.name == "offers" || page.name == "index") {
-            console.log('offers');
             myApp.confirm('would you like to exit app.', function() {
                 navigator.app.clearHistory();
                 gaPlugin.exit(nativePluginResultHandler, nativePluginErrorHandler);
@@ -3110,4 +3124,39 @@ function nativePluginErrorHandler(error) {
     // alert('GA error: '+error);
 }
 
+function sendemail(email){
+    console.log(email);
+    if (email == '') {
+         myApp.alert('Email Field is empty');
+    } else {
+        $.ajax({
+          url: base_url + '/forgot_password',
+          type: 'POST',
+          dataType: 'json',
+          data:{
+            email:email
+          },    
+        })
+      .done(function(result) {
+        if(result['status']=="success"){
+          myApp.alert('Password Sent To The Registered Email ID');
+          myApp.closeModal('.forgot_picker')
+        } else {
+              if(result['msg']=="no data"){
+                myApp.alert('Please Enter The Registered Email ID');
+              } else {
 
+                alert("failed");
+              }
+        }  
+      })
+      .fail(function() {
+        console.log("error");
+      })
+      .always(function() {
+        console.log("complete");
+      });
+    }
+
+
+}

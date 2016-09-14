@@ -285,9 +285,5 @@ myApp.onPageInit('search', function(page) {
 });
 
 
-myApp.onPageInit('forgot_password', function(page) {
-    myApp.allowPanelOpen = false;
-    clearInterval(new_comment_interval);
-    clearInterval(new_chat_interval);
-});
+
 

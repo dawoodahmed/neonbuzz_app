@@ -65,7 +65,7 @@
 #shopper_register-profile_btn, #create_feed-image_btn, .btn-center {
 	position: relative !important;
 	margin: auto;
-	right: -17px !important;
+	right: 1px !important;
     bottom: -40px !important;
 }
 
@@ -467,7 +467,7 @@
     outline: none;
     border: none;
 	margin-bottom:0 !important;
-    position: absolute !important;
+   /* position: absolute !important;*/
     bottom: 0px;
 }
 
@@ -866,8 +866,8 @@
 }
 
 .offer_button{
-    height: 80px !important;
-    line-height: 81px !important;
+    height: 49px !important;
+    line-height: 49px !important;
     font-size:19px;
 }
 /*sand custom*/

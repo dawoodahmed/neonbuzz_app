@@ -31,7 +31,7 @@
               </div>
             </div>
           </li>
-		      <a id="" href="forgot_password.html" class="button button-big forgot_password">Forgot Password ?</a>
+		      <a id="" href="" data-picker=".forgot_picker" class="button button-big forgot_password open-picker">Forgot Password ?</a>
         </ul>
       </div>
       <div class="content-block register-btn">
@@ -47,7 +47,44 @@
       <img src="img/facebook-btn.png"  class="fb_btn"  alt="" />
     </div>
   </div>
-  
+  <div class="picker-modal forgot_picker" style="height: 36%">
+    <div class="toolbar" style="background-color: black;">
+      <div class="toolbar-inner" style="background: black;">
+        <div class="left">
+          <p style="color: white;font-size: 18px;margin-left: 13px;margin-top: 14px;">Forgot Password</p>
+        </div>
+        <div class="right"><a href="#" class="close-picker" style="border:none"><i class="material-icons" style="color:white;margin-top: 8px;">close</i></a></div>
+      </div>
+    </div>
+` <div class="picker-modal-inner" style="">
+    <div class="content-block" style="margin:0">
+     <!--  <br>            
+      <p style="color: white;font-size: 14px">Enter Registered Email Id:</p>
+      <input id="entered_email" style="background-color: white ! important; border: medium none;" class="redeem-input" name="ref_code" type="text" /> -->
+
+      <div class="list-block">
+        <ul style="margin-top: -25px;margin-left: -67px;">
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-form-email"></i></div>
+                <div class="item-inner">
+                  <div class="item-title label">E-mail</div>
+                    <div class="item-input">
+                    <input id="entered_email" type="email" placeholder="Registered E-mail">
+                  </div>
+                </div>
+            </div>
+          </li>
+        </ul>
+        <p class="buttons-row">
+          <a href="#" onclick="sendemail(entered_email.value)" class="button button-raised" style="color: black;font-size: 16px;">Send</a>
+        </p>
+      </div>
+      <!-- <input onclick="sendemail(entered_email.value)" class='redeem-btn' type='submit' value='Send'> -->
+    </div>
+  </div>
   
 </div>
+
+
 
