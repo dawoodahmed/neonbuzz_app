@@ -387,7 +387,7 @@ function register_business() {
             profile_image: profile_image,
             user_type: 'Business',
             medium: 'register',
-            business_name: business_name,
+            bussiness_name: business_name,
             bussiness_category_id: business_category,
             phone: phone,
         },
@@ -397,8 +397,8 @@ function register_business() {
         myApp.hideIndicator();
         if (res.response_text == 'success') {
             myApp.alert(j2s(res.response_msg));
-            Lockr.set('token', res.user_id);
-            token = res.user_id;
+            Lockr.set('token', res.users_data.id);
+            token = res.users_data.id;
             user_data = res.users_data;
 
             if (!notification_interval) {
@@ -408,13 +408,47 @@ function register_business() {
                 }, 5000);
             }
 
-            mainView.router.load({
-                url: 'offers.html',
-                ignoreCache: false,
-                query: {
-                    register: true
-                },
-            });
+            if (res.users_data.user_type == "Business") {
+                $("#buzzCreate").hide();
+                mainView.router.load({
+                    url: 'offers.html',
+                    ignoreCache: false,
+                    query: {
+                        register: true
+                    },
+                });
+            } else {
+                $("#offerCreate").hide();
+                mainView.router.load({
+                    url: 'buzzs.html',
+                    ignoreCache: false,
+                    query: {
+                        register: true
+                    },
+                });
+
+            }
+
+
+            // myApp.alert(j2s(res.response_msg));
+            // Lockr.set('token', res.user_id);
+            // token = res.user_id;
+            // user_data = res.users_data;
+
+            // if (!notification_interval) {
+            //     load_notification_count();
+            //     notification_interval = setInterval(function() {
+            //         load_notification_count();
+            //     }, 5000);
+            // }
+
+            // mainView.router.load({
+            //     url: 'offers.html',
+            //     ignoreCache: false,
+            //     query: {
+            //         register: true
+            //     },
+            // });
         } else {
             alert(j2s(res.response_msg));
         }
@@ -1559,7 +1593,7 @@ function load_edit_profile_shopper() {
             $('#edit_profile_shopper-phone').val(user_data.phone);
             $('#edit_profile_shopper-city_select').val(user_data.city_id);
             // $('#edit_profile_shopper-location_select').val(user_data.location_id);
-            $('input[name=edit_profile_shopper-gender][value='+user_data.gender+']').attr('checked', true); 
+            // $('input[name=edit_profile_shopper-gender][value='+user_data.gender+']').attr('checked', true); 
             image_from_device = user_data.image;
         } else {
             myApp.alert('Some error occurred');
@@ -2228,7 +2262,7 @@ function load_shopper_profile(user_id) {
                                 '<div class="navbar header">'+
                                     '<div class="navbar-inner">'+
                                         '<div class="left"></div>'+
-                                        '<div style="margin: 0 4% !important;" class="center title1" id="single-header">Followers List</div>'+
+                                        '<div style="margin: 0 4% !important;" class="center title1" id="single-header">Followings List</div>'+
                                         '<div class="right">'+
                                             '<a href="#" class="close-popup link icon-only">'+
                                                 '<i class="material-icons" style="color:#000;margin-left: -5px;">close</i>'+
