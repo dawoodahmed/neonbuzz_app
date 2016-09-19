@@ -364,8 +364,7 @@ function register_business() {
         return false;
     }
     if (profile_image == '') {
-        myApp.alert('Please upload profile image.');
-        return false;
+      profile_image = 'default_image.png';
     }
 
     $.each(category, function(index, val) {
@@ -400,9 +399,10 @@ function register_business() {
         myApp.hideIndicator();
         if (res.response_text == 'success') {
             $('#buzzCreate').hide();
+            $('#offerCreate').show();
             myApp.alert(j2s(res.response_msg));
-            Lockr.set('token', res.users_data.id);
-            token = res.users_data.id;
+            Lockr.set('token', res.user_id);
+            token = res.user_id;
             user_data = res.users_data;
 
             if (!notification_interval) {
@@ -412,8 +412,8 @@ function register_business() {
                 }, 5000);
             }
 
-            if (res.users_data.user_type == "Business") {
-                $("#buzzCreate").hide();
+            // if (res.users_data.user_type == "Business") {
+            //     $("#buzzCreate").hide();
                 mainView.router.load({
                     url: 'offers.html',
                     ignoreCache: false,
@@ -421,18 +421,18 @@ function register_business() {
                         register: true
                     },
                 });
-            } else {
+            // } else {
 
-                $("#offerCreate").hide();
-                mainView.router.load({
-                    url: 'buzzs.html',
-                    ignoreCache: false,
-                    query: {
-                        register: true
-                    },
-                });
+            //     $("#offerCreate").hide();
+            //     mainView.router.load({
+            //         url: 'buzzs.html',
+            //         ignoreCache: false,
+            //         query: {
+            //             register: true
+            //         },
+            //     });
 
-            }
+            // }
 
 
             // myApp.alert(j2s(res.response_msg));
@@ -646,19 +646,19 @@ function login_via_fb(data) {
     .done(function(res) {
         console.log("success: " + j2s(res));
         myApp.hideIndicator();
-         $("#buzzCreate").hide();
+         $("#offerCreate").hide();
         if (res.response_text == 'success') {
             myApp.alert(j2s(res.response_msg));
-            Lockr.set('token', res.user_id);
-            token = res.user_id;
+            Lockr.set('token', res.users_data.id);
+            token = res.users_data.id;
             user_data = res.users_data;
 
-            // if (!notification_interval) {
-            //     load_notification_count();
-            //     notification_interval = setInterval(function() {
-            //         load_notification_count();
-            //     }, 5000);
-            // }
+            if (!notification_interval) {
+                load_notification_count();
+                notification_interval = setInterval(function() {
+                    load_notification_count();
+                }, 5000);
+            }
 
             mainView.router.load({
                 url: 'buzzs.html',
@@ -669,16 +669,16 @@ function login_via_fb(data) {
             });
         } else {
             myApp.alert(j2s(res.response_msg));
-            Lockr.set('token', res.user_id);
-            token = res.user_id;
+            Lockr.set('token', res.users_data.id);
+            token = res.users_data.id;
             user_data = res.users_data;
 
-            // if (!notification_interval) {
-            //     load_notification_count();
-            //     notification_interval = setInterval(function() {
-            //         load_notification_count();
-            //     }, 5000);
-            // }
+            if (!notification_interval) {
+                load_notification_count();
+                notification_interval = setInterval(function() {
+                    load_notification_count();
+                }, 5000);
+            }
             
             mainView.router.load({
                 url: 'buzzs.html',
@@ -2543,7 +2543,7 @@ function load_business_profile(user_id) {
                                 '<div class="navbar header">'+
                                     '<div class="navbar-inner">'+
                                         '<div class="left"></div>'+
-                                        '<div style="margin: 0 4% !important;" class="center title1" id="single-header">Followers List</div>'+
+                                        '<div style="margin: 0 4% !important;" class="center title1" id="single-header">Followings List</div>'+
                                         '<div class="right">'+
                                             '<a href="#" class="close-popup link icon-only">'+
                                                 '<i class="material-icons" style="color:#000;margin-left: -5px;">close</i>'+
