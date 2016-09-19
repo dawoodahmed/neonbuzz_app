@@ -111,7 +111,7 @@ function login_app() {
 
 //logout
 function logout() {
-    window.location.reload();
+    //window.location.reload();
     // $('.ne_on').css("margin-top","2px");
     // $('#login').show();
     // $('#register').show();
@@ -120,6 +120,9 @@ function logout() {
     mainView.router.load({
         url: 'index.html',
         ignoreCache: false,
+        query: {
+            isLogout: true
+        }
     });
 }
 
@@ -396,6 +399,7 @@ function register_business() {
         console.log("success: " + j2s(res));
         myApp.hideIndicator();
         if (res.response_text == 'success') {
+            $('#buzzCreate').hide();
             myApp.alert(j2s(res.response_msg));
             Lockr.set('token', res.users_data.id);
             token = res.users_data.id;
@@ -418,6 +422,7 @@ function register_business() {
                     },
                 });
             } else {
+
                 $("#offerCreate").hide();
                 mainView.router.load({
                     url: 'buzzs.html',
@@ -464,6 +469,7 @@ function register_business() {
 
 //regiter shopper
 function register_shopper() {
+
     console.log('shopper_register');
     var name = $('#shopper_register-name').val().trim();
     var email = $('#shopper_register-email').val().trim();
@@ -555,6 +561,7 @@ function register_shopper() {
         // alert(j2s(res));
         myApp.hideIndicator();
         if (res.response_text == 'success') {
+            $('#offerCreate').hide();
             myApp.alert(j2s(res.response_msg));
             Lockr.set('token', res.user_id);
             token = res.user_id;
@@ -568,6 +575,7 @@ function register_shopper() {
             }
 
             mainView.router.load({
+
                 url: 'buzzs.html',
                 ignoreCache: false,
                 query: {

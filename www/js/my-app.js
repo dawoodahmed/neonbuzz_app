@@ -124,6 +124,18 @@ myApp.onPageInit('index', function(page) {
     myApp.allowPanelOpen = false;
     clearInterval(new_comment_interval);
     clearInterval(new_chat_interval);
+
+    if (page.query.isLogout) {
+        $('.ne_on').css("margin-top","1%");
+        $('#login').show();
+        $('#register').show();
+    }
+
+    if (user_id == undefined) {
+        $('.ne_on').css("margin-top","1%");
+        $('#login').show();
+        $('#register').show();
+    }
 });
 
 myApp.onPageInit('login', function(page) {
@@ -139,6 +151,7 @@ myApp.onPageInit('before_register', function(page) {
 });
 
 myApp.onPageInit('buzzs', function(page) {
+    
     myApp.allowPanelOpen = true;
     var user_id = page.query.id;
     // bottom_tabs();
