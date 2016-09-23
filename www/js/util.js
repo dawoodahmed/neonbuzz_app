@@ -63,6 +63,7 @@ function login_app() {
     .done(function(res) {
         console.log(j2s(res.users_data));
         myApp.hideIndicator();
+        console.log('res.users_data.user_type'+res.users_data.user_type);
         if (res.response_text == 'success') {
             myApp.alert(j2s(res.response_msg));
             Lockr.set('token', res.users_data.id);
@@ -77,7 +78,10 @@ function login_app() {
             }
 
             if (res.users_data.user_type == "Business") {
+                console.log('in business');
                 $("#buzzCreate").hide();
+                $("#offerCreate").show();
+
                 mainView.router.load({
                     url: 'offers.html',
                     ignoreCache: false,
@@ -86,7 +90,10 @@ function login_app() {
                     },
                 });
             } else {
+                console.log('in shopper');
                 $("#offerCreate").hide();
+                $("#buzzCreate").show();
+
                 mainView.router.load({
                     url: 'buzzs.html',
                     ignoreCache: false,
@@ -111,10 +118,6 @@ function login_app() {
 
 //logout
 function logout() {
-    //window.location.reload();
-    // $('.ne_on').css("margin-top","2px");
-    // $('#login').show();
-    // $('#register').show();
     Lockr.flush();
     token = false;
     mainView.router.load({
@@ -399,7 +402,7 @@ function register_business() {
         myApp.hideIndicator();
         if (res.response_text == 'success') {
             $('#buzzCreate').hide();
-            $('#offerCreate').show();
+            $("#offerCreate").show();
             myApp.alert(j2s(res.response_msg));
             Lockr.set('token', res.user_id);
             token = res.user_id;
@@ -562,6 +565,7 @@ function register_shopper() {
         myApp.hideIndicator();
         if (res.response_text == 'success') {
             $('#offerCreate').hide();
+            $("#buzzCreate").show();
             myApp.alert(j2s(res.response_msg));
             Lockr.set('token', res.user_id);
             token = res.user_id;
@@ -647,11 +651,13 @@ function login_via_fb(data) {
         console.log("success: " + j2s(res));
         myApp.hideIndicator();
          $("#offerCreate").hide();
+         // $("#buzzCreate").show();
         if (res.response_text == 'success') {
             myApp.alert(j2s(res.response_msg));
-            Lockr.set('token', res.users_data.id);
-            token = res.users_data.id;
+            Lockr.set('token', res.user_id);
+            token = res.user_id;
             user_data = res.users_data;
+            console.log('fb_token success'+token);
 
             if (!notification_interval) {
                 load_notification_count();
@@ -671,6 +677,7 @@ function login_via_fb(data) {
             myApp.alert(j2s(res.response_msg));
             Lockr.set('token', res.users_data.id);
             token = res.users_data.id;
+            console.log('fb_token fail'+token);
             user_data = res.users_data;
 
             if (!notification_interval) {
@@ -708,7 +715,7 @@ function add_buzz() {
     var price = $('#create_buzz-price').val().trim();
     var location_id = $('#create_buzz-location').val().trim();
     var categories = $('#create_buzz-categories').val();
-    // var description = $('#create_buzz-description').val().trim();
+    var description = $('#create_buzz-description').val().trim();
     var tag = $('#create_buzz_tag').val(); 
     console.log("image :"+buzz_offer_image);
      console.log("tag :"+tag);
@@ -734,10 +741,10 @@ function add_buzz() {
         myApp.alert('Please select categories.');
         return false;
     }
-    // if (description == '') {
-    //     myApp.alert('Please provide description.');
-    //     return false;
-    // }
+    if (description == '') {
+        myApp.alert('Please provide description.');
+        return false;
+    }
     // console.log(buzz_offer_image+'price'+price+'location_id'+location_id+'categories'+categories+'description'+description+'tag'+tag);
     myApp.showIndicator();
     $.ajax({
@@ -752,7 +759,7 @@ function add_buzz() {
             location: location_id,
             price: price,
             categories: categories,
-            // description: description,
+            description: description,
         },
     })
     .done(function(res) {
@@ -891,8 +898,6 @@ function load_buzzs() {
     })
     .done(function(res) {
         console.log('buzzs: ' + j2s(res));
-
-        myApp.hideIndicator();
         if (res.status == 'success') {
             var html = '';
             $.each(res.data, function(index, val) {
@@ -901,6 +906,8 @@ function load_buzzs() {
                 var like_link = '';
                 var tags = '';
                 var type = 'buzz';
+                var description = val.description;
+                var location = val.location;
                 var count_like ='';
                 var remove_link = '<a href="javascript:void(0);" style="display:none;" onclick="remove_me(' + val.id + ', \'' + type + '\', this)" class="dlt_lnk" ><i class="material-icons white_heart" style="font-size:30px !important;">delete</i></a>';
                 // var remove_link = '<a href="#" onclick="remove_me(' + val.id + ', \'' + type + '\', this)" class="link">Remove</a>';
@@ -956,26 +963,43 @@ function load_buzzs() {
                         '<div style="position: absolute;top: 0%;background: rgba(19, 17, 17, 0.32);right: 0;padding: 2%;text-align: right;color: white;">'+
                             '<i class="material-icons" style="font-size: 13px !important;color: red;">favorite</i>&nbsp;'+
                             '<span class="count_buzz_like">'+count_like+' </span>likes<br>'+
-                            '<span style="">₹&nbsp;'+val.price+'</span>'+
+                            // '<span style="font-size:17px"><i class="material-icons">location_on</i>'+location+'</span>'+
+                            '<span style="">₹&nbsp;'+val.price+'</span><br>'+
                         '</div>'+
                         '<div class="card-footer no-border like_share" style="padding: 4px;">' +
                             share_link +
                             // '<a href="javascript:void(0);" class="add_clk"><i class="material-icons white_heart">add_circle</i></a>'+
                             // remove_link +
-                            like_link ;
-                            if (parseInt(val.user_id) == parseInt(token)) {
-                                html +=
-                                '<i class="material-icons chat" style="font-size:28px !important;color:white;">chat</i></a>';
-                            } else {
-                                html +=
-                                 '<a href="javascript:void(0);" class="chat_lnk" onClick="goto_single_chat('+val.user_id+')"><i class="material-icons chat" style="font-size:28px !important;color:white;">chat</i></a>';
-                            }
-                        html +=
-                        '</div>' +
-                    '</div>';
+                            like_link +
+                            '<a href="#"  class="create-about" data-popuptext="'+description+'" style="color: white;"><i class="material-icons">info</i></a>'+
+                            // if (parseInt(val.user_id) == parseInt(token)) {
+                            //     html +=
+                            //     '<i class="material-icons chat" style="font-size:28px !important;color:white;">chat</i></a>';
+                            // } else {
+                            //     html +=
+                            //      '<a href="javascript:void(0);" class="chat_lnk" onClick="goto_single_chat('+val.user_id+')"><i class="material-icons chat" style="font-size:28px !important;color:white;">chat</i></a>';
+                            // }
+                        // html +=
+                        '</div>'+
+                        '</div>' ;
             });
 
             $('#buzzs-container').html(html);
+
+            $('.create-about').on('click', function () {
+                console.log("done");
+                var clickedLink = this;
+                var popoverHTML =   '<div class="popover" style="margin-top: -17%;margin-left: -9px;background:rgba(255, 255, 255, 0.8)">'+
+                                      '<div class="popover-inner" style="border-radius: 5%">'+
+                                        '<div class="content-block" style="margin: 0; padding: 0 15px">'+
+                                          '<p style="margin: 8px 0"> <b>Shop Name & Description</b> </p>'+
+                                          '<p style="font-size">'+$(this).data("popuptext")+'</p>'+
+                                        '</div>'+
+                                      '</div>'+
+                                    '</div>'
+                myApp.popover(popoverHTML, clickedLink);
+            });
+
             // $( ".add_clk" ).click(function() {
             //     $(this).prev( ".shr_lnk" ).slideToggle();
             //     $(this).next( ".dlt_lnk" ).slideToggle();
@@ -1173,12 +1197,27 @@ function load_buzzs_filter() {
                             // '<a href="javascript:void(0);" class="add_clk"><i class="material-icons white_heart">add_circle</i></a>'+
                             // remove_link +
                             like_link +
-                            '<a href="javascript:void(0);" class="chat_lnk" onClick="goto_single_chat('+val.user_id+')"><i class="material-icons chat" style="font-size:28px !important;color:white;">chat</i></a>'+
+                            '<a href="#"  class="filter_buzz_info" data-popuptext="'+val.description+'" style="color: white;"><i class="material-icons">info</i></a>'+
+                            // '<a href="javascript:void(0);" class="chat_lnk" onClick="goto_single_chat('+val.user_id+')"><i class="material-icons chat" style="font-size:28px !important;color:white;">chat</i></a>'+
                         '</div>' +
                     '</div>';
             });
 
             $('#buzzs-container').html(html);
+
+            $('.filter_buzz_info').on('click', function () {
+                console.log("done");
+                var clickedLink = this;
+                var popoverHTML =   '<div class="popover" style="margin-top: -17%;margin-left: -9px;background:rgba(255, 255, 255, 0.8)">'+
+                                      '<div class="popover-inner" style="border-radius: 5%">'+
+                                        '<div class="content-block" style="margin: 0; padding: 0 15px">'+
+                                          '<p style="margin: 8px 0"> <b>Shop Name & Description</b> </p>'+
+                                          '<p style="font-size">'+$(this).data("popuptext")+'</p>'+
+                                        '</div>'+
+                                      '</div>'+
+                                    '</div>'
+                myApp.popover(popoverHTML, clickedLink);
+            });
             // $( ".add_clk" ).click(function() {
             //     $(this).prev( ".shr_lnk" ).slideToggle();
             //     $(this).next( ".dlt_lnk" ).slideToggle();
@@ -1601,7 +1640,7 @@ function load_edit_profile_shopper() {
             $('#edit_profile_shopper-phone').val(user_data.phone);
             $('#edit_profile_shopper-city_select').val(user_data.city_id);
             // $('#edit_profile_shopper-location_select').val(user_data.location_id);
-            // $('input[name=edit_profile_shopper-gender][value='+user_data.gender+']').attr('checked', true); 
+            $('input[name=edit_profile_shopper-gender][value='+user_data.gender+']').attr('checked', true); 
             image_from_device = user_data.image;
         } else {
             myApp.alert('Some error occurred');
@@ -1680,7 +1719,8 @@ function update_shopper_profile() {
     var city_id = $('#edit_profile_shopper-city_select').val();
     var location_id = $('#edit_profile_shopper-location_select').val();
     var gender = $('input[name=edit_profile_shopper-gender]:checked').val();
-    var dob = $('#edit_profile_shopper-dob').val().trim();
+    // var dob = $('#edit_profile_shopper-dob').val().trim();
+    var dob = '';
     var profile_image = image_from_device.trim();
     var phone = $('#edit_profile_shopper-phone').val().trim();
 
@@ -1712,10 +1752,10 @@ function update_shopper_profile() {
         myApp.alert('Please select gender.');
         return false;
     }
-    if (dob == '') {
-        myApp.alert('Please enter date of birth.');
-        return false;
-    }
+    // if (dob == '') {
+    //     myApp.alert('Please enter date of birth.');
+    //     return false;
+    // }
     if (profile_image == '') {
         myApp.alert('Please upload profile image.');
         return false;
@@ -2117,6 +2157,7 @@ function goto_profile() {
 }
 
 function load_shopper_profile(user_id) {
+    myApp.showIndicator();
     console.log('user_id: ' + user_id);
     console.log('token: ' + token);
     $('.follow_block').hide();
@@ -2134,6 +2175,7 @@ function load_shopper_profile(user_id) {
     .done(function(res) {
         console.log("success: " + j2s(res));
         if (res.status == 'success') {
+
             var followers_image = '';
             var followers_profile_link = '';
             var followings_image = '';
@@ -2359,9 +2401,11 @@ function load_shopper_profile(user_id) {
         }
     })
     .fail(function(err) {
+        // myApp.hideIndicator();
         console.log("error: " + j2s(err));
     })
     .always(function() {
+        myApp.hideIndicator();
         console.log("complete");
     });
 }
@@ -2397,6 +2441,7 @@ function buzz_delete(id, me) {
 }
 
 function load_business_profile(user_id) {
+    myApp.showIndicator();
     console.log('user_id: ' + user_id);
     console.log('token: ' + token);
     $('.follow_block').hide();
@@ -2635,6 +2680,7 @@ function load_business_profile(user_id) {
         console.log("error: " + j2s(err));
     })
     .always(function() {
+        myApp.hideIndicator();
         console.log("complete");
     });
 }
