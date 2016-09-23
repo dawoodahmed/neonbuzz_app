@@ -721,7 +721,9 @@ function add_buzz() {
      console.log("tag :"+tag);
     
     if (buzz_offer_image == '') {
-        buzz_offer_image = 'neon_buzz.jpg';
+        myApp.alert('upload Image.');
+        return false;
+        // buzz_offer_image = 'neon_buzz.jpg';
     }
     if (tag == 'select') {
         myApp.alert('Please Select tags.');
@@ -766,13 +768,18 @@ function add_buzz() {
         console.log("success: " + j2s(res));
         myApp.hideIndicator();
         if (res.status == 'success') {
-            mainView.router.load({
-                url:'buzzs.html',
-                ignoreCache: false,
-            });
+            // mainView.router.load({
+            //     url: 'buzzs.html',
+            //     ignoreCache: false
+            // });
+
+            mainView.router.back();
+
+            // mainView.router.loadPage('buzzs.html');
         } else {
             myApp.alert('Provide valid data');
         }
+        console.log('function executed');
     })
     .fail(function(err) {
         myApp.hideIndicator();
@@ -868,10 +875,12 @@ function add_offer() {
         console.log("success: " + j2s(res));
         myApp.hideIndicator();
         if (res.status == 'success') {
-            mainView.router.load({
-                url:'offers.html',
-                ignoreCache: false,
-            });
+            // mainView.router.load({
+            //     url:'offers.html',
+            //     ignoreCache: false,
+            // });
+
+            mainView.router.back();
         } else {
             myApp.alert('Provide valid data');
         }
@@ -897,19 +906,20 @@ function load_buzzs() {
         },
     })
     .done(function(res) {
+        myApp.hideIndicator();
         console.log('buzzs: ' + j2s(res));
         if (res.status == 'success') {
             var html = '';
             $.each(res.data, function(index, val) {
-                var pofile_image;
+                var pofile_image = '';
                 var profile_link = '';
                 var like_link = '';
                 var tags = '';
                 var type = 'buzz';
                 var description = val.description;
-                var location = val.location;
+                var location = val.location_name;
                 var count_like ='';
-                var remove_link = '<a href="javascript:void(0);" style="display:none;" onclick="remove_me(' + val.id + ', \'' + type + '\', this)" class="dlt_lnk" ><i class="material-icons white_heart" style="font-size:30px !important;">delete</i></a>';
+                //var remove_link = '<a href="javascript:void(0);" style="display:none;" onclick="remove_me(' + val.id + ', \'' + type + '\', this)" class="dlt_lnk" ><i class="material-icons white_heart" style="font-size:30px !important;">delete</i></a>';
                 // var remove_link = '<a href="#" onclick="remove_me(' + val.id + ', \'' + type + '\', this)" class="link">Remove</a>';
                 var share_link = '<a href="javascript:void(0);" style="" onClick="share(\'http://neonbuzz.co/' + type + '/' + val.id + '\', \'' + image_url + val.image + '\')" class="shr_lnk" style=""><i class="material-icons white_heart" style="font-size:28px !important;">share</i></a>';
                 // var share_link = '<a href="#" onClick="share(\'http://neonbuzz.co/' + type + '/' + val.id + '\', ' + image_url + val.image + ')" class="link">Share</a>';
@@ -939,7 +949,7 @@ function load_buzzs() {
                 });
 
                 tags = tags.slice(0, -1);
-                console.log('val.id: '+val.id);
+                //console.log('val.id: '+val.id);
                 
                 if (val.buzz_like == null) {
                     count_like = 0;
@@ -963,8 +973,8 @@ function load_buzzs() {
                         '<div style="position: absolute;top: 0%;background: rgba(19, 17, 17, 0.32);right: 0;padding: 2%;text-align: right;color: white;">'+
                             '<i class="material-icons" style="font-size: 13px !important;color: red;">favorite</i>&nbsp;'+
                             '<span class="count_buzz_like">'+count_like+' </span>likes<br>'+
-                            // '<span style="font-size:17px"><i class="material-icons">location_on</i>'+location+'</span>'+
-                            '<span style="">₹&nbsp;'+val.price+'</span><br>'+
+                            '<span style="font-size:13px"><i class="material-icons" style="font-size:17px !important">location_on</i>'+location+'</span><br>'+
+                            '<span style="">₹&nbsp;'+val.price+'</span>'+
                         '</div>'+
                         '<div class="card-footer no-border like_share" style="padding: 4px;">' +
                             share_link +
@@ -1190,6 +1200,7 @@ function load_buzzs_filter() {
                         '<div style="position: absolute;top: 0%;background: rgba(19, 17, 17, 0.32);right: 0;padding: 2%;text-align: right;color: white;">'+
                             '<i class="material-icons" style="font-size: 13px !important;color: red;">favorite</i>&nbsp;'+
                             '<span class="count_buzz_like">'+count_like+' </span>likes<br>'+
+                            '<span style="font-size:13px"><i class="material-icons" style="font-size:17px !important">location_on</i>'+val.location_name+'</span><br>'+
                             '<span style="">₹&nbsp;'+val.price+'</span>'+
                         '</div>'+
                         '<div class="card-footer no-border like_share" style="padding: 4px;">' +
@@ -1640,7 +1651,9 @@ function load_edit_profile_shopper() {
             $('#edit_profile_shopper-phone').val(user_data.phone);
             $('#edit_profile_shopper-city_select').val(user_data.city_id);
             // $('#edit_profile_shopper-location_select').val(user_data.location_id);
-            $('input[name=edit_profile_shopper-gender][value='+user_data.gender+']').attr('checked', true); 
+            if (user_data.gender != '') {
+                $('input[name=edit_profile_shopper-gender][value='+user_data.gender+']').attr('checked', true);
+            } 
             image_from_device = user_data.image;
         } else {
             myApp.alert('Some error occurred');
