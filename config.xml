@@ -47,9 +47,10 @@
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
     <gap:plugin name="cordova-plugin-social-message" source="npm" />
     <gap:plugin name="com.adobe.plugins.gaplugin" />
-    <icon src="app_icon.png" />
-    <icon src="app_icon.png" platform="android" width="57" height="57" density="mdpi" />
-    
+    <!-- <icon src="app_icon.png" />
+    <icon src="app_icon.png" platform="android" width="57" height="57" density="mdpi" /> -->
+    <preference name="prerendered-icon" value="true"/>
+    <icon gap:platform="android" gap:role="default" src="www/res/icon/android/icon.png" />
     <access origin="*" />
     <access origin="http://casaestilo.in" />
     <!-- <plugin name="cordova-plugin-whitelist" version="1" /> -->
