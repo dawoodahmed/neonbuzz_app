@@ -49,7 +49,7 @@
     <gap:plugin name="com.adobe.plugins.gaplugin" />
     <!-- <icon src="app_icon.png" />
     <icon src="app_icon.png" platform="android" width="57" height="57" density="mdpi" /> -->
-    <icon src="www/icon.png" platform="android" width="65" height="57" density="mdpi" />
+    <icon src="www/icon.png" platform="android" width="75" height="57" density="mdpi" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
     <icon gap:platform="android" gap:qualifier="mdpi" src="www/res/icon/android/icon-48-mdpi.png" />
     <icon gap:platform="android" gap:qualifier="hdpi" src="www/res/icon/android/icon-72-hdpi.png" />
