@@ -3,8 +3,8 @@
 */
 // var base_url = 'http://casaestilo.in/neonbuzz_d/neonbuzz_admin/index.php/api';
 // var image_url = 'http://casaestilo.in/neonbuzz_d/neonbuzz_admin/upload_image/profile_pic/';
-var base_url = 'http://casaestilo.in/neonbuzz_d/neonbuzz_admin/index.php/apid';
-var image_url = 'http://casaestilo.in/neonbuzz_d/neonbuzz_admin/assets/uploads/profile_pic/';
+var base_url = 'http://neonbuzz.co/neonbuzz_api/index.php/apid';
+var image_url = 'http://neonbuzz.co/neonbuzz_api/upload_image/profile_pic/';
 // var base_url = 'http://casaestilo.in/neonbuzz_d/neonbuzz_admin/index.php/api_v2';
 // var image_url = 'http://casaestilo.in/neonbuzz_d/neonbuzz_admin/upload_image/profile_pic/';
 var token = Lockr.get('token');
