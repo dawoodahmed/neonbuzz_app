@@ -760,10 +760,10 @@
 
 .forgot_password{
 	height: auto !important;
-    line-height: 20px !important;
-    font-size: 0.6em !important;
-    text-align: left !important;
-    padding-left: 5% !important;
+  /*  line-height: 20px !important;*/
+    font-size: 0.8em !important;
+    text-align: center;
+ /*   padding-left: 5% !important;*/
 	color:#3b5998;
 	text-decoration:underline;
 	text-transform:none;
@@ -871,4 +871,24 @@
     font-size:19px;
 }
 
+.actions-modal-group{
+    background: black;
+    text-align: center;
+}
 /*sand custom*/
+
+::-webkit-input-placeholder {
+   color: white;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: white;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: white;  
+}
+
+:-ms-input-placeholder {  
+   color: white;  
+}

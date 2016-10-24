@@ -11,44 +11,54 @@
 
   <div class="page-content" style="padding-top: 50px;">
     <form>
-      <div class="list-block inputs-list" >
+      <div class="list-block inputs-list" style="margin: 32px 17px">
+
         <ul>
-          <li class="item-content">
-            <div class="item-inner">
-              <div class="item-title label">Name<span style="color: red;">*</span></div>
+        <!-- <li class="item-content" style="margin-bottom: 3%;margin-left: 17%;">
+        <div class="item-inner">
+          <p>ALREADY A MEMBER ? <br><a href="#" class="open-login-screen" style="color:gray;margin-left:20%">Login</a></p>
+        </div>
+        </li> -->
+          <li class="item-content" style="margin-bottom: 3%;">
+          <div class="item-media"><i class="material-icons">perm_identity</i></div>
+            <div class="item-inner" style="margin-left: 0 !important;">
+              <!-- <div class="item-title label">Name</div> -->
               <div class="item-input">
                 <input id="shopper_register-name" type="text" placeholder="Your Name"/>
               </div>
             </div>
           </li>
-          <li class="item-content">
-            <div class="item-inner">
-              <div class="item-title label">Email ID (Never Shared)<span style="color: red;">*</span></div>
+          <li class="item-content" style="margin-bottom: 3%;">
+          <div class="item-media"><i class="material-icons">email</i></div>
+            <div class="item-inner" style="margin-left: 0 !important;">
+              <!-- <div class="item-title label">Email ID (Never Shared)</span></div> -->
               <div class="item-input">
-                <input id="shopper_register-email" type="email" placeholder="Your Email ID"/>
+                <input id="shopper_register-email" type="email" placeholder="Your Phone Email"/>
               </div>
             </div>
           </li>
-          <li class="item-content">
-            <div class="item-inner">
-              <div class="item-title label">Phone number (Never Shared)<span style="color: red;">*</span></div>
+          <li class="item-content" style="margin-bottom: 3%;">
+          <div class="item-media"><i class="material-icons">phone</i></div>
+            <div class="item-inner" style="margin-left: 0 !important;">
+              <!-- <div class="item-title label">Phone number (Never Shared)</span></div> -->
               <div class="item-input">
                 <!-- <input id="shopper_register-phone" type="number" maxlength="10" onKeyDown="if(this.value.length==10 && isNaN(this.value)) return false;" placeholder="Your Phone number"/> -->
                 <input id="shopper_register-phone" type="tel" maxlength="10" placeholder="Your Phone number" class="not-empty-state">
               </div>
             </div>
           </li>
-          <li class="item-content">
-            <div class="item-inner">
-              <div class="item-title label">Password<span style="color: red;">*</span></div>
+          <li class="item-content" style="margin-bottom: 7%;">
+          <div class="item-media"><i class="material-icons">lock</i></div>
+            <div class="item-inner" style="margin-left: 0 !important;">
+              <!-- <div class="item-title label">Password</div> -->
               <div class="item-input">
                 <input id="shopper_register-password" type="password" placeholder="Your Password"/>
               </div>
             </div>
           </li>
-          <li class="item-content">
+          <!-- <li class="item-content">
             <div class="item-inner">
-              <div class="item-title label">Confirm Password<span style="color: red;">*</span></div>
+              <div class="item-title label">Confirm Password</span></div>
               <div class="item-input">
                 <input id="shopper_register-confirm_password" type="password" placeholder="Confirm Password"/>
               </div>
@@ -61,9 +71,7 @@
 
                 <div class="item-content">
                     <div class="item-inner">
-                      <!-- Select label -->
-                      <div class="item-title">City<span style="color: red;">*</span></div>
-                      <!-- Selected value, not required -->
+                      <div class="item-title">City</span></div>
                       <div class="item-after"></div>
                     </div>
                 </div>
@@ -76,14 +84,12 @@
 
                 <div class="item-content">
                     <div class="item-inner">
-                      <!-- Select label -->
                       <div class="item-title">Neighbourhood</div>
-                      <!-- Selected value, not required -->
                       <div class="item-after"></div>
                     </div>
                 </div>
             </a>
-          </li>
+          </li> -->
           <!-- <li class="item-content">
               <div class="content-block-title">Gender</div>
           </li> -->
@@ -135,8 +141,13 @@
         </ul>
       </div>
 
-      <div class="content-block submit-btn">
+      <div class="content-block submit-btn" style="margin-left: 25%;margin-right: 25%;width:auto;background: rgba(54,54,54,0.8);">
         <a href="#" id="shopper_register-register_btn" class="button button-big" onclick="register_shopper()">Register</a>
+      </div>
+      <br>
+      <hr>
+      <div class="content-block submit-btn" style="margin-left: 25%;margin-right: 25%;width:auto;border-radius:15px; background: none !important">
+        <p>ALREADY A MEMBER ? <a href="#" class="open-login-screen" style="color:gray;" onclick="login_page()">Login</a></p>
       </div>
 
     </form>

@@ -12,22 +12,26 @@
       <!-- <div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div> -->
     </div>
   </div>
-
-  <div class="page-content" style="padding-top: 50px;">
+  <!-- <div class="content-block submit-btn" style="margin-left: 25%;margin-right: 25%;margin-top:24%;width:auto;border-radius:15px; background: none !important">
+        <p style="color:gray;margin:0%!important;">ALREADY A MEMBER ? <a href="#" class="open-login-screen" style="color:gray;" onclick="login_page()">Login</a></p>
+  </div> -->
+  <div class="page-content" style="padding-top: 40px;">
     <form>
       <div class="list-block inputs-list">
         <ul>
           <li class="item-content">
+             <div class="item-media"><i class="material-icons">perm_identity</i></div>
             <div class="item-inner">
-              <div class="item-title label">Name</div>
+             <!--  <div class="item-title label">Name</div> -->
               <div class="item-input">
                 <input id="business_register-name" type="text" placeholder="Your Name"/>
               </div>
             </div>
           </li>
           <li class="item-content">
+            <div class="item-media"><i class="material-icons">business</i></div>
             <div class="item-inner">
-              <div class="item-title label">Business Name</div>
+              <!-- <div class="item-title label">Business Name</div> -->
               <div class="item-input">
                 <input id="business_register-buissness" type="text" placeholder="Your Business Name"/>
               </div>
@@ -39,83 +43,107 @@
               <select name="car" multiple id="business_register-category">
               </select>
               <div class="item-content">
+              <div class="item-media"><i class="material-icons">view_list</i></div>
                 <div class="item-inner">
-                  <div class="item-title">Categories</div>
+                 <!--  <div class="item-title">Categories</div> -->
                   <!-- Selected value, not required -->
+                  <div class="item-input">
+                    <input id="" type="text" placeholder="Categories"/>
+                  </div>
                   <div class="item-after"></div>
                 </div>
               </div>
             </a>
           </li>
           <li class="item-content">
+            <div class="item-media"><i class="material-icons">email</i></div>
             <div class="item-inner">
-              <div class="item-title label">Email ID (Never Shared)</div>
+              <!-- <div class="item-title label">Email ID (Never Shared)</div> -->
+              
               <div class="item-input">
                 <input id="business_register-email" type="email" placeholder="Your Email ID"/>
               </div>
             </div>
           </li>
           <li class="item-content">
+            <div class="item-media"><i class="material-icons">phone</i></div>
             <div class="item-inner">
-              <div class="item-title label">Phone number (Never Shared)</div>
+             <!--  <div class="item-title label">Phone number (Never Shared)</div> -->
               <div class="item-input">
                 <input id="business_register-phone" type="tel" maxlength="10" class="not-empty-state" placeholder="Your Phone number"/>
               </div>
             </div>
           </li>
           <li class="item-content">
+             <div class="item-media"><i class="material-icons">lock</i></div>
             <div class="item-inner">
-              <div class="item-title label">Password</div>
+              <!-- <div class="item-title label">Password</div> -->
               <div class="item-input">
                 <input id="business_register-password" type="password" placeholder="Your Password"/>
               </div>
             </div>
           </li>
-          <li class="item-content">
+          <!-- <li class="item-content">
             <div class="item-inner">
               <div class="item-title label">Confirm Password</div>
               <div class="item-input">
                 <input id="business_register-confirm_password" type="password" placeholder="Confirm Password"/>
               </div>
             </div>
-          </li>
-          <li>
-            <a href="#" class="item-link smart-select" data-searchbar="true" data-searchbar-placeholder="Search cities" data-back-on-select="true">
-                <select name="cities" id="business_register-city_select">
-                </select>
+          </li> -->
 
-                <div class="item-content">
-                    <div class="item-inner">
-                      <!-- Select label -->
-                      <div class="item-title">City</div>
-                      <!-- Selected value, not required -->
-                      <div class="item-after"></div>
-                    </div>
+
+<!--            <li class="item-content">
+             <div class="item-media"><i class="material-icons">lock</i></div>
+            <div class="item-inner">
+              <div class="item-input">
+                <input id="business_register-password" type="password" placeholder="Your Password"/>
+              </div>
+            </div>
+          </li> -->
+		   <li>
+	            <a href="#" class="item-link smart-select" data-page-title="Go back" data-searchbar="true" data-searchbar-placeholder="Search cities">
+	              <!-- "multiple" attribute for multiple select-->
+	              <select name="cities" multiple id="business_register-city_select">
+	              </select>
+	              <div class="item-content">
+	              <div class="item-media"><i class="material-icons">location_city</i></div>
+	                <div class="item-inner">
+	                 <!--  <div class="item-title">Categories</div> -->
+	                  <!-- Selected value, not required -->
+	                  <div class="item-input">
+	                    <input id="" type="text" placeholder="City"/>
+	                  </div>
+	                  <div class="item-after"></div>
+	                </div>
+	              </div>
+	            </a>
+          </li>
+		  <li>
+            <a href="#" class="item-link smart-select" data-page-title="Go back" data-searchbar="true" data-searchbar-placeholder="Search location">
+              <!-- "multiple" attribute for multiple select-->
+              <select name="locations" id="business_register-location_select">
+              </select>
+              <div class="item-content">
+              <div class="item-media"><i class="material-icons">location_on</i></div>
+                <div class="item-inner">
+                 <!--  <div class="item-title">Categories</div> -->
+                  <!-- Selected value, not required -->
+                  <div class="item-input">
+                    <input id="" type="text" placeholder="Neighbourhood"/>
+                  </div>
+                  <div class="item-after"></div>
                 </div>
+              </div>
             </a>
           </li>
-          <li>
-            <a href="#" class="item-link smart-select" data-searchbar="true" data-searchbar-placeholder="Search location" data-back-on-select="true">
-                <select name="locations" id="business_register-location_select">
-                </select>
-
-                <div class="item-content">
-                    <div class="item-inner">
-                      <!-- Select label -->
-                      <div class="item-title">Neighbourhood</div>
-                      <!-- Selected value, not required -->
-                      <div class="item-after"></div>
-                    </div>
-                </div>
-            </a>
-          </li>
-          <li class="item-content">
-              <!-- <div class="item-title">Gender</div> -->
+         <!--  <li class="item-content">
+              <div class="item-title">Gender</div>
               <div class="content-block-title">Gender</div>
-          </li>
-          <li>
+          </li> -->
+        <!--   <li>
               <label class="label-radio item-content">
-                <!-- Checked by default -->
+                Checked by default
                 <input type="radio" name="business_register-gender" value="male" class="business_register-gender">
                 <div class="item-media">
                   <i class="icon icon-form-radio"></i>
@@ -124,9 +152,9 @@
                   <div class="item-title">Male</div>
                 </div>
               </label>
-          </li>
+          </li> -->
           <!-- Another radio input -->
-          <li>
+          <!-- <li>
             <label class="label-radio item-content">
               <input type="radio" name="business_register-gender" value="female" class="business_register-gender">
               <div class="item-media">
@@ -136,10 +164,10 @@
                 <div class="item-title">Female</div>
               </div>
             </label>
-          </li>
+          </li> -->
           <li class="item-content">
             <div class="item-inner">
-              <div class="item-title">Profile pic</div>
+              <!-- <div class="item-title">Profile pic</div> -->
               <div class="item-input">
                   <a href="#" id="shopper_register-profile_btn" onclick="open_dialog_for_image()" class="floating-button black_clr">
                     <i class="material-icons">add_a_photo</i>

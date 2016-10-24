@@ -33,6 +33,11 @@ function shopper() {
      });
 }
 
+function tutorial() {
+    console.log('tutorial'); 
+    $('#tutorial').css('display','none');
+}
+
 //login
 function login_app() {
     var email = $('#login-email').val().trim();
@@ -302,22 +307,23 @@ function shopper_register_onSuccess_file(res) {
 
 //register business
 function register_business() {
-    console.log('shopper_register');
+    console.log('business_register');
     var name = $('#business_register-name').val().trim();
     var email = $('#business_register-email').val().trim();
     var password = $('#business_register-password').val().trim();
-    var confirm_password = $('#business_register-confirm_password').val().trim();
-    var city_id = $('#business_register-city_select').val().trim();
+    var confirm_password = '';
+    var city_id = $('#business_register-city_select').val();
     var location_id = $('#business_register-location_select').val();
     // var gender = $('.business_register-gender:checked').val();
-    var gender = $('input[name=business_register-gender]:checked').val();
+    // var gender = $('input[name=business_register-gender]:checked').val();
+    var gender = '';
     var business_name = $('#business_register-buissness').val().trim();
     var category = $('#business_register-category').val();
     var business_category = '';
     // var profile_image = $('#shopper_register-profile_image').val().trim();
     var profile_image = image_from_device.trim();
     var phone = $('#business_register-phone').val().trim();
-
+    console.log('name :'+name+'email :'+email+'password :'+password+'city_id :'+city_id+'location_id :'+location_id+'business_name :'+business_name+'category :'+category+'profile_image :'+profile_image+'phone :'+phone);
     if (name == '') {
         myApp.alert('Please provide name.');
         return false;
@@ -346,14 +352,14 @@ function register_business() {
         myApp.alert('Please provide password.');
         return false;
     }
-    if (confirm_password == '') {
-        myApp.alert('Please confirm password.');
-        return false;
-    }
-    if (!password == confirm_password) {
-        myApp.alert('Password mismatch.');
-        return false;
-    }
+    // if (confirm_password == '') {
+    //     myApp.alert('Please confirm password.');
+    //     return false;
+    // }
+    // if (!password == confirm_password) {
+    //     myApp.alert('Password mismatch.');
+    //     return false;
+    // }
     if (city_id == '') {
         myApp.alert('Please provide city.');
         return false;
@@ -362,10 +368,10 @@ function register_business() {
         myApp.alert('Please provide location.');
         return false;
     }
-    if (!gender) {
-        myApp.alert('Please select gender.');
-        return false;
-    }
+    // if (!gender) {
+    //     myApp.alert('Please select gender.');
+    //     return false;
+    // }
     if (profile_image == '') {
       profile_image = 'default_image.png';
     }
@@ -477,9 +483,9 @@ function register_shopper() {
     var name = $('#shopper_register-name').val().trim();
     var email = $('#shopper_register-email').val().trim();
     var password = $('#shopper_register-password').val().trim();
-    var confirm_password = $('#shopper_register-confirm_password').val().trim();
-    var city_id = $('#shopper_register-city_select').val();
-    var location_id = $('#shopper_register-location_select').val();
+    var confirm_password = '';
+    var city_id = '';
+    var location_id = '';
     // var gender = $('input[name=shopper_register-gender]:checked').val();
     // var dob = $('#shopper_register-dob').val().trim();
     var gender = '';
@@ -508,22 +514,22 @@ function register_shopper() {
         myApp.alert('Please enter Password.');
         return false;
     }
-    if (confirm_password == '') {
-        myApp.alert('Please confirm password.');
-        return false;
-    }
-    if (password!=confirm_password) {
-        myApp.alert('Password mismatch.');
-        return false;
-    }
-    if (city_id == '') {
-        myApp.alert('Please provide city.');
-        return false;
-    }
-    if (!location_id) {
-        myApp.alert('Please provide location.');
-        return false;
-    }
+    // if (confirm_password == '') {
+    //     myApp.alert('Please confirm password.');
+    //     return false;
+    // }
+    // if (password!=confirm_password) {
+    //     myApp.alert('Password mismatch.');
+    //     return false;
+    // }
+    // if (city_id == '') {
+    //     myApp.alert('Please provide city.');
+    //     return false;
+    // }
+    // if (!location_id) {
+    //     myApp.alert('Please provide location.');
+    //     return false;
+    // }
     // if (!gender) {
     //     myApp.alert('Please select gender.');
     //     return false;
@@ -549,8 +555,8 @@ function register_shopper() {
             email:email,
             name: name,
             password: password,
-            city_id: city_id,
-            location_id: location_id,
+            // city_id: city_id,
+            // location_id: location_id,
             gender: gender,
             dob: dob,
             profile_image: profile_image,
@@ -567,6 +573,7 @@ function register_shopper() {
             $('#offerCreate').hide();
             $("#buzzCreate").show();
             myApp.alert(j2s(res.response_msg));
+            // $('#tutorial').show();
             Lockr.set('token', res.user_id);
             token = res.user_id;
             user_data = res.users_data;
@@ -579,7 +586,6 @@ function register_shopper() {
             }
 
             mainView.router.load({
-
                 url: 'buzzs.html',
                 ignoreCache: false,
                 query: {
@@ -966,6 +972,7 @@ function load_buzzs() {
                             '</div>' +
                             '<div class="ks-facebook-name pro_name">' + val.user_name + '</div>' +
                             '<div class="ks-facebook-date pro_tag">'+tags+'</div>' +
+                            '<div class="ks-facebook-date pro_tag">'+location+'</div>' +
                         '</a>' +
                         '<a class="card-content ks-facebook-card" >' +
                             '<img data-src="' + image_url + val.image + '" width="100%" class="lazy lazy-fadein">' +
@@ -973,7 +980,7 @@ function load_buzzs() {
                         '<div style="position: absolute;top: 0%;background: rgba(19, 17, 17, 0.32);right: 0;padding: 2%;text-align: right;color: white;">'+
                             '<i class="material-icons" style="font-size: 13px !important;color: red;">favorite</i>&nbsp;'+
                             '<span class="count_buzz_like">'+count_like+' </span>likes<br>'+
-                            '<span style="font-size:13px"><i class="material-icons" style="font-size:17px !important">location_on</i>'+location+'</span><br>'+
+                            // '<span style="font-size:13px"><i class="material-icons" style="font-size:17px !important">location_on</i>'+location+'</span><br>'+
                             '<span style="">₹&nbsp;'+val.price+'</span>'+
                         '</div>'+
                         '<div class="card-footer no-border like_share" style="padding: 4px;">' +
@@ -2256,6 +2263,7 @@ function load_shopper_profile(user_id) {
             });
 
             $('.p_name').text(res.data.name);
+            $('.userbuzz').text(res.data.name+"'s buzz");
 
             var myApp = new Framework7();
  
@@ -2400,7 +2408,7 @@ function load_shopper_profile(user_id) {
                     if (parseInt(user_id) == parseInt(token)) {
                         buzz += '<div class="card-footer no-border like_share delete_buzz" style="top: 75% !important;">' +
                             // '<h1 style="color: white;">6</h1><a href="javascript:void(0);" class="" onClick=""><i class="material-icons white_heart" style="">favorite</i></a>'+
-                                    '<a href="javascript:void(0);" class="" onclick="buzz_delete(' + val.buzz_data.id + ', this)"><i class="material-icons" style="color: white;margin-left:49px;margin-top:27px;">delete</i></a>'+
+                                    '<a href="javascript:void(0);" class="" onclick="buzz_delete(' + val.buzz_data.id + ', this)"><i class="material-icons" style="color: white;margin-left:66px;margin-top:27px;">delete</i></a>'+
                                 '</div>';
                     } else{
                          buzz += '<div class="card-footer no-border like_share delete_buzz" style="top: 75% !important;">' +
@@ -2517,6 +2525,7 @@ function load_business_profile(user_id) {
 
             $('.p_name').text(res.data.name);
             $('.p_name1').text(res.data.bussiness_name);
+            $('.useroffer').text(res.data.name+"'s offer");
 
             if (res.data.status == '') {
                 $('.status').text('');
@@ -3023,6 +3032,7 @@ function load_offers() {
                             '</div>' +
                             '<div class="ks-facebook-name pro_name">' + val.user_name + '</div>' +
                             '<div class="ks-facebook-date pro_tag">'+tags+'</div>' +
+                            '<div class="ks-facebook-date pro_tag">'+val.bussiness_name+'</div>' +
                         '</a>' +
                         '<a class="card-content" >' +
                             '<img data-src="' + image_url + val.image + '" width="100%" class="lazy lazy-fadein">' +

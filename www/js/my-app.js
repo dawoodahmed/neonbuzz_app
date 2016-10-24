@@ -1,10 +1,10 @@
 /*
 *   app var
 */
-// var base_url = 'http://casaestilo.in/neonbuzz_d/neonbuzz_admin/index.php/api';
-// var image_url = 'http://casaestilo.in/neonbuzz_d/neonbuzz_admin/upload_image/profile_pic/';
-var base_url = 'http://neonbuzz.co/neonbuzz_api/index.php/apid';
-var image_url = 'http://neonbuzz.co/neonbuzz_api/upload_image/profile_pic/';
+var base_url = 'http://casaestilo.in/neonbuzz_d/neonbuzz_admin/index.php/apid';
+var image_url = 'http://casaestilo.in/neonbuzz_d/neonbuzz_admin/assets/uploads/profile_pic/';
+// var base_url = 'http://neonbuzz.co/neonbuzz_api/index.php/apid';
+// var image_url = 'http://neonbuzz.co/neonbuzz_api/upload_image/profile_pic/';
 // var base_url = 'http://casaestilo.in/neonbuzz_d/neonbuzz_admin/index.php/api_v2';
 // var image_url = 'http://casaestilo.in/neonbuzz_d/neonbuzz_admin/upload_image/profile_pic/';
 var token = Lockr.get('token');
@@ -41,7 +41,7 @@ var months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "
 
 // init Framework7
 var myApp = new Framework7({
-    swipePanel: 'left',
+    // swipePanel: 'left',
     material: true,
     preloadPreviousPage: false,
     uniqueHistory: true,
@@ -49,10 +49,11 @@ var myApp = new Framework7({
     modalTitle: 'NeonBuzz',
     imagesLazyLoadPlaceholder: 'img/lazyload.jpg',
     imagesLazyLoadThreshold: 50,
-
 });
 
-// $$(document).on('pageAfterAnimation', function(e) { if (e.detail.page.name == "index" || e.detail.page.name == "login" || e.detail.page.name == "before_register" || e.detail.page.name == "shopper_register" || e.detail.page.name == "business_register" || e.detail.page.name == "forgot_password") { myApp.allowPanelOpen = false; } else { myApp.allowPanelOpen = true; } });
+// var myApp = new Framework7();
+// var $$ = Dom7;
+// $$(document).on('pageAfterAnimation', function(e) { if (e.detail.page.name == "index" || e.detail.page.name == "login" || e.detail.page.name == "before_register" || e.detail.page.name == "shopper_register" || e.detail.page.name == "business_register" ) { myApp.allowPanelOpen = false; } else { myApp.allowPanelOpen = true; } });
 
 var mainView = myApp.addView('.view-main', {});
 
@@ -142,6 +143,35 @@ myApp.onPageInit('login', function(page) {
     myApp.allowPanelOpen = false;
     clearInterval(new_comment_interval);
     clearInterval(new_chat_interval);
+    var $$ = Dom7;
+    $$('.ac-5').on('click', function () {
+        var buttons = [
+            {
+                text: 'Shopper',
+                color: 'white',
+                 // bold: true,
+                onClick: function () {
+                    shopper();
+                }
+            },
+            {
+                text: 'Business',
+                // bold: true,
+                color: 'white',
+                onClick: function () {
+                    business();
+                }
+            },
+            {
+                text: 'Cancel',
+                color: 'red',
+                onClick: function () {
+                    // myApp.alert('Cancel clicked');
+                }
+            },
+        ];
+        myApp.actions(buttons);
+    });
 });
 
 myApp.onPageInit('before_register', function(page) {
@@ -159,6 +189,16 @@ myApp.onPageInit('buzzs', function(page) {
     load_buzz_filter_location('#filterLocation');
     load_buzz_filter_category('#filtercategory');
     clearInterval(new_chat_interval);
+
+    var tutorial = Lockr.get('tutorial');
+    console.log(tutorial)
+    if (tutorial == undefined) {
+        $('#tutorial').show();
+        $('#tutorial').click(function(e) {
+            $(this).hide()
+        })
+        Lockr.set('tutorial', true)
+    }
 });
 
 myApp.onPageInit('offers', function(page) {

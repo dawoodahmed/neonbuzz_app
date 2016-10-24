@@ -1,90 +1,111 @@
 <div data-page="login" class="page">
-
-  <div class="navbar header">
-    <div class="navbar-inner">
-      <!-- <div class="left"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div> -->
-      <div class="left"><a href="#" class="back link icon-only"><i class="material-icons" style="color:#000;">arrow_back</i></a></div>
-      <div class="center title">login</div>
-	  <img src="img/header-right.png" class="right" alt="" />
-      <!-- <div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div> -->
-    </div>
-  </div>
-
-  <div class="page-content" style="padding-top: 50px;">
-    <!--<div class="content-block-title">Login</div>-->
-    <form>
-      <div class="list-block inputs-list">
-        <ul>
-          <li class="item-content">
-            <div class="item-inner">
-              <div class="item-title label">Email</div>
-              <div class="item-input">
-                <input id="login-email" type="email" name="email" placeholder="Email"/>
-              </div>
+    <div class="navbar header">
+        <div class="navbar-inner">
+            <!-- <div class="left"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div> -->
+            <div class="left"><a href="#" class="back link icon-only"><i class="material-icons" style="color:#000;">arrow_back</i></a>
             </div>
-          </li>
-          <li class="item-content">
-            <div class="item-inner">
-              <div class="item-title label">Password</div>
-              <div class="item-input">
-                <input id="login-password" type="password" name="password" placeholder="Password"/>
-              </div>
-            </div>
-          </li>
-		      <a id="" href="" data-picker=".forgot_picker" class="button button-big forgot_password open-picker">Forgot Password ?</a>
-        </ul>
-      </div>
-      <div class="content-block register-btn">
-        <a id="login-btn" href="#" class="button button-big lo_gin" onclick="login_app()">LOGIN</a>
-      </div>
-      <!-- <div class="content-block reset-btn">
-        <a href="before_register.html" class="button button-big lo_gin">REGISTER</a>
-      </div> -->
-
-    </form>
-  	<center><img src="img/login-hr-line.png" class="login-hr" alt="" /></center>
-  	<div class="facebook-btn" onclick="fb_login()">
-      <img src="img/facebook-btn.png"  class="fb_btn"  alt="" />
-    </div>
-  </div>
-  <div class="picker-modal forgot_picker" style="height: 36%">
-    <div class="toolbar" style="background-color: black;">
-      <div class="toolbar-inner" style="background: black;">
-        <div class="left">
-          <p style="color: white;font-size: 18px;margin-left: 13px;margin-top: 14px;">Forgot Password</p>
+            <div class="center title">login</div>
+            <img src="img/header-right.png" class="right" alt="" />
+            <!-- <div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div> -->
         </div>
-        <div class="right"><a href="#" class="close-picker" style="border:none"><i class="material-icons" style="color:white;margin-top: 8px;">close</i></a></div>
-      </div>
     </div>
-` <div class="picker-modal-inner" style="">
-    <div class="content-block" style="margin:0">
-     <!--  <br>            
-      <p style="color: white;font-size: 14px">Enter Registered Email Id:</p>
-      <input id="entered_email" style="background-color: white ! important; border: medium none;" class="redeem-input" name="ref_code" type="text" /> -->
-
-      <div class="list-block">
-        <ul style="margin-top: -25px;margin-left: -67px;">
-          <li>
-            <div class="item-content">
-              <div class="item-media"><i class="icon icon-form-email"></i></div>
-                <div class="item-inner">
-                  <div class="item-title label">E-mail</div>
-                    <div class="item-input">
-                    <input id="entered_email" type="email" placeholder="Registered E-mail">
-                  </div>
+    <div class="page-content" style="padding-top: 50px;">
+        <!-- <div class="login-screen-title">Welcome</div> -->
+        <!--<div class="content-block-title">Login</div>-->
+        <form>
+            <div class="list-block inputs-list" >
+                <ul>
+                    <!-- <center>
+                        <img src="img/header-right1.png" class="menu_logo" alt="" style="margin-bottom: 5%;"/>
+                    </center> -->
+                    <li class="item-content">
+                        <div class="item-media"><i class="material-icons">email</i>
+                        </div>
+                        <div class="item-inner" style="margin-left: 1%;">
+                            <!-- <div class="item-title label">Email</div> -->
+                            <div class="item-input">
+                                <input style="" id="login-email" type="email" name="email" placeholder="Email" />
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content">
+                        <div class="item-media"><i class="material-icons">lock</i>
+                        </div>
+                        <div class="item-inner" style="margin-left: 1%;">
+                            <!-- <div class="item-title label">Password</div> -->
+                            <div class="item-input">
+                                <input style="" id="login-password" type="password" name="password" placeholder="Password" />
+                            </div>
+                        </div>
+                    </li>
+                    <a id="" href="" data-picker=".forgot_picker" class="button button-big forgot_password open-picker">Forgot Password ?</a>
+                </ul>
+                <p><a style="background-color: black; color: white;font-size: 18px;text-transform: lowercase;margin:0 20%;border-radius:10px;" href="#" class="button" onclick="login_app()">LOGIN</a></p>
+                <div class="abc" style="display: flex;margin-left: 20%;margin-top: -3%;margin-bottom: -3%;">
+                     <p style="border-bottom: 1px solid black;width:30%;margin-bottom: 8%;"></p>
+                     <P style="margin-left: 2%;">OR</P>
+                     <p  style="border-bottom: 1px solid black;width:30%;margin-bottom: 8%;margin-left:4%;"></p>
+                </div>
+               
+                <p><a style="background-color:#3B5998!important; color: white;text-transform: lowercase;font-size: 18px;    margin: 0% 20%;border-radius:10px;margin-top: 0%;"  href="#" class="button" onclick="fb_login()">f</a></p>
+                <!-- <div class="row">
+                    <div class="col-50">
+                        <a style="background-color: black; color: white;float: right;width: 70%;font-size: 18px;text-transform: lowercase;" href="#" class="button button-big button-red" onclick="login_app()">Login</a>
+                    </div>
+                    <div class="col-50">
+                        <a style="background-color:#3B5998!important; color: white;float: left;width: 70%;text-transform: lowercase;font-size: 18px;" href="#" class="button button-big button-green" onclick="fb_login()">f</a>
+                    </div>
+                </div> -->
+                <p style="text-align: center;" >For signup Click<a style="color:#3b5998;text-decoration: underline;" href="#" class="ac-5"> Here?</a></p>
+            </div>
+            <!-- <div class="content-block register-btn">
+            <a id="login-btn" href="#" class="button button-big lo_gin" onclick="login_app()">LOGIN</a>
+            </div> -->
+            <!-- <div class="content-block reset-btn">
+            <a href="before_register.html" class="button button-big lo_gin">REGISTER</a>
+            </div> -->
+        </form>
+        <!-- <center><img src="img/login-hr-line.png" class="login-hr" alt="" /></center> -->
+        <!-- <div class="facebook-btn" onclick="fb_login()">
+        <img src="img/facebook-btn.png"  class="fb_btn"  alt="" />
+        </div> -->
+        <div class="picker-modal forgot_picker" style="height: 36%">
+            <div class="toolbar" style="background-color: black;">
+                <div class="toolbar-inner" style="background: black;">
+                    <div class="left" style="margin-left: 6%;">
+                        <p style="color: white;font-size: 18px;">Forgot Password</p>
+                    </div>
+                    <div class="right"><a href="#" class="close-picker" style="border:none"><i class="material-icons" style="color:white;margin-top: 8px;">close</i></a>
+                    </div>
                 </div>
             </div>
-          </li>
-        </ul>
-        <p class="buttons-row">
-          <a href="#" onclick="sendemail(entered_email.value)" class="button button-raised" style="color: black;font-size: 16px;">Send</a>
-        </p>
-      </div>
-      <!-- <input onclick="sendemail(entered_email.value)" class='redeem-btn' type='submit' value='Send'> -->
+            <div class="picker-modal-inner" style="">
+                <div class="content-block" style="margin:0">
+                    <br>
+                    <!-- <p style="color: white;font-size: 14px">Enter Registered Email Id:</p>
+                    <input id="entered_email" style="background-color: white ! important; border: medium none;" class="redeem-input" name="ref_code" type="text" /> -->
+                    <div class="list-block">
+                        <ul style="margin-top: -25px;margin-left: -67px;">
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-media"><i class="icon icon-form-email"></i>
+                                    </div>
+                                    <div class="item-inner">
+                                        <div class="item-title label">E-mail</div>
+                                        <div class="item-input">
+                                            <input id="entered_email" type="email" placeholder="E-mail id">
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <p class="buttons-row">
+                            <a href="#" onclick="sendemail(entered_email.value)" class="button button-raised" style="color: black;font-size: 16px;">Send</a>
+                        </p>
+                    </div>
+                    <!-- <input onclick="sendemail(entered_email.value)" class='redeem-btn' type='submit' value='Send'> -->
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  
 </div>
-
-
-
